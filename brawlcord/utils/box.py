@@ -32,7 +32,6 @@ class Box:
         self.legendary = 0.1115
         self.starpower = 1
 
-        self.tickets = 25
         self.gems = 9
         self.td = 3  # token doubler
 
@@ -183,7 +182,6 @@ class Box:
                 if rarity:
                     embed = await self.unlock_brawler(rarity, conf, embed)
                 else:
-                    self.tickets *= 2
                     self.gems *= 2
                     self.td *= 2
 
@@ -192,7 +190,6 @@ class Box:
             if self.can_get_sp:
                 embed = await self.get_starpower(conf, embed)
             else:
-                self.tickets *= 2
                 self.gems *= 2
                 self.td *= 2
 
@@ -212,10 +209,6 @@ class Box:
             gems = random.randint(2, 5)
             await conf.gems.set(gems + old_gems)
             embed.add_field(name="Gems", value=f"{emojis['gem']} {gems}")
-        elif chance <= self.tickets:
-            old_tickets = await conf.tickets()
-            await conf.tickets.set(1 + old_tickets)
-            embed.add_field(name="Tickets", value=f"{emojis['ticket']} 1")
 
         return embed
 
@@ -248,7 +241,6 @@ class Box:
             stacks = 1
         elif len(self.can_get_pp) < stacks:
             stacks = len(self.can_get_pp)
-            self.tickets *= 1.5
             self.gems *= 1.5
             self.td *= 1.5
 
@@ -299,7 +291,6 @@ class Box:
                 if rarity:
                     embed = await self.unlock_brawler(rarity, conf, embed)
                 else:
-                    self.tickets *= 2
                     self.gems *= 2
                     self.td *= 2
 
@@ -308,7 +299,6 @@ class Box:
             if self.can_get_sp:
                 embed = await self.get_starpower(conf, embed)
             else:
-                self.tickets *= 2
                 self.gems *= 2
                 self.td *= 2
 
@@ -328,10 +318,6 @@ class Box:
             gems = random.randint(6, 15)
             await conf.gems.set(gems + old_gems)
             embed.add_field(name="Gems", value=f"{emojis['gem']} {gems}")
-        elif chance <= self.tickets:
-            old_tickets = await conf.tickets()
-            await conf.tickets.set(4 + old_tickets)
-            embed.add_field(name="Tickets", value=f"{emojis['ticket']} 4")
 
         return embed
 
@@ -364,7 +350,6 @@ class Box:
             stacks = 1
         elif len(self.can_get_pp) < stacks:
             stacks = len(self.can_get_pp)
-            self.tickets *= 2
             self.gems *= 2
             self.td *= 2
 
@@ -420,7 +405,6 @@ class Box:
             if self.can_get_sp:
                 embed = await self.get_starpower(conf, embed)
             else:
-                self.tickets *= 2
                 self.gems *= 2
                 self.td *= 2
 
@@ -440,10 +424,7 @@ class Box:
             gems = random.randint(18, 45)
             await conf.gems.set(gems + old_gems)
             embed.add_field(name="Gems", value=f"{emojis['gem']} {gems}")
-        elif chance <= self.tickets:
-            old_tickets = await conf.tickets()
-            await conf.tickets.set(12 + old_tickets)
-            embed.add_field(name="Tickets", value=f"{emojis['ticket']} 12")
+
 
         return embed
 
